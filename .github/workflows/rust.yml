@@ -49,6 +49,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
       fail-fast: false
+    env:
+      OS: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     steps:
@@ -81,6 +83,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           files: lcov.info
           fail_ci_if_error: true
+          env_vars: OS
 
   cargo-fmt:
     name: Fmt
