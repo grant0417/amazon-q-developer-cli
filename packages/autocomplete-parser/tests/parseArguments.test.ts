@@ -5,14 +5,14 @@ import {
 } from "@fig/autocomplete-shared";
 import logger from "loglevel";
 import { folders, filepaths } from "@fig/autocomplete-generators";
-import * as Internal from "@amzn/fig-io-shared/internal";
+import * as Internal from "@aws/amazon-q-developer-clshared/internal";
 import {
   SuggestionFlag,
   SuggestionFlags,
   makeArray,
   SpecLocationSource,
-} from "@amzn/fig-io-shared/utils";
-import { Command, getCommand } from "@amzn/fig-io-shell-parser";
+} from "@aws/amazon-q-developer-clshared/utils";
+import { Command, getCommand } from "@aws/amazon-q-developer-clshell-parser";
 import {
   findOption,
   getCurrentArg,
@@ -740,7 +740,7 @@ describe.todo("parseArguments", () => {
       expect(result.searchTerm).toBe("");
 
       // We mutate completionObj for generateSpec so check with toEqual instead of toBe.
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
       const newSpec = await generateSpec!(
         ["cmd", "generateSpec", ""],
         async () => ({

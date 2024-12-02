@@ -1,5 +1,5 @@
-import { fread } from "@amzn/fig-io-api-bindings-wrappers";
-import { fs } from "@amzn/fig-io-api-bindings";
+import { fread } from "@aws/amazon-q-developer-clapi-bindings-wrappers";
+import { fs } from "@aws/amazon-q-developer-clapi-bindings";
 import { CredentialsError } from "./errors.js";
 
 export interface AuthClient {
@@ -11,14 +11,12 @@ export interface AuthClient {
 
 export type Platform = "macos" | "linux" | "windows";
 
-/* eslint-disable camelcase */
 export type Credentials = {
   refresh_token_expired?: boolean;
   access_token?: string;
   id_token?: string;
   refresh_token?: string;
 };
-/* eslint-enable camelcase */
 
 // export interface MakeAuthClientOptions {
 //   os?: Platform;

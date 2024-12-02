@@ -1,4 +1,4 @@
-import { State, Process } from "@amzn/fig-io-api-bindings";
+import { State, Process } from "@aws/amazon-q-developer-clapi-bindings";
 import { useEffect, useState } from "react";
 import {
   Select,

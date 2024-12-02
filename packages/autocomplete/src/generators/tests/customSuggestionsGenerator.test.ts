@@ -1,4 +1,4 @@
-import { Annotation } from "@amzn/fig-io-autocomplete-parser";
+import { Annotation } from "@aws/amazon-q-developer-clautocomplete-parser";
 import {
   MockInstance,
   afterEach,

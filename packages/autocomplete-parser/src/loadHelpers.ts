@@ -5,13 +5,13 @@ import {
   ensureTrailingSlash,
   withTimeout,
   exponentialBackoff,
-} from "@amzn/fig-io-shared/utils";
+} from "@aws/amazon-q-developer-clshared/utils";
 import {
   executeCommand,
   fread,
   isInDevMode,
-} from "@amzn/fig-io-api-bindings-wrappers";
-import { AuthClient, CDN, Routes } from "@amzn/fig-io-api-client";
+} from "@aws/amazon-q-developer-clapi-bindings-wrappers";
+import { AuthClient, CDN, Routes } from "@aws/amazon-q-developer-clapi-client";
 import z from "zod";
 import { MOST_USED_SPECS } from "./constants.js";
 import { mixinCache } from "./caches.js";

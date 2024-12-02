@@ -1,5 +1,5 @@
 import logger from "loglevel";
-import { executeCommandTimeout } from "@amzn/fig-io-api-bindings-wrappers";
+import { executeCommandTimeout } from "@aws/amazon-q-developer-clapi-bindings-wrappers";
 import { runPipingConsoleMethods } from "../utils";
 import {
   GeneratorContext,

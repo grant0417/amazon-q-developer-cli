@@ -2,8 +2,8 @@ import {
   LocalStateMap,
   State,
   States,
-} from "@amzn/fig-io-api-bindings-wrappers";
-import { ensureTrailingSlash } from "@amzn/fig-io-shared/utils";
+} from "@aws/amazon-q-developer-clapi-bindings-wrappers";
+import { ensureTrailingSlash } from "@aws/amazon-q-developer-clshared/utils";
 import { AuthClient } from "./auth.js";
 import { GenericRequestError } from "./errors.js";
 

@@ -1,5 +1,8 @@
-import { Annotation, TokenType } from "@amzn/fig-io-autocomplete-parser";
-import { Subcommand } from "@amzn/fig-io-shared/internal";
+import {
+  Annotation,
+  TokenType,
+} from "@aws/amazon-q-developer-clautocomplete-parser";
+import { Subcommand } from "@aws/amazon-q-developer-clshared/internal";
 import { describe, expect, it } from "vitest";
 import { getTemplateSuggestions } from "../templateSuggestionsGenerator";
 import { GeneratorContext } from "../helpers";

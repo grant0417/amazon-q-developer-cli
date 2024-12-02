@@ -1,6 +1,9 @@
-import { makeArray } from "@amzn/fig-io-shared/utils";
-import { Suggestion } from "@amzn/fig-io-shared/internal";
-import { SETTINGS, getSetting } from "@amzn/fig-io-api-bindings-wrappers";
+import { makeArray } from "@aws/amazon-q-developer-clshared/utils";
+import { Suggestion } from "@aws/amazon-q-developer-clshared/internal";
+import {
+  SETTINGS,
+  getSetting,
+} from "@aws/amazon-q-developer-clapi-bindings-wrappers";
 
 // { command: { commandParam: count/lastUsedDate } }
 // e.g. git: { add: 2, push: 4 }

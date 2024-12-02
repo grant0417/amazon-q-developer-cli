@@ -1,7 +1,7 @@
 import logger from "loglevel";
 import { convertSubcommand, initializeDefault } from "@fig/autocomplete-shared";
 import { filepaths, folders } from "@fig/autocomplete-generators";
-import * as Internal from "@amzn/fig-io-shared/internal";
+import * as Internal from "@aws/amazon-q-developer-clshared/internal";
 import {
   firstMatchingToken,
   makeArray,
@@ -9,15 +9,15 @@ import {
   SuggestionFlag,
   SuggestionFlags,
   withTimeout,
-} from "@amzn/fig-io-shared/utils";
+} from "@aws/amazon-q-developer-clshared/utils";
 import {
   executeCommand,
   executeLoginShell,
   getSetting,
   isInDevMode,
   SETTINGS,
-} from "@amzn/fig-io-api-bindings-wrappers";
-import { Command, substituteAlias } from "@amzn/fig-io-shell-parser";
+} from "@aws/amazon-q-developer-clapi-bindings-wrappers";
+import { Command, substituteAlias } from "@aws/amazon-q-developer-clshell-parser";
 import {
   getSpecPath,
   loadSubcommandCached,
@@ -816,11 +816,9 @@ const parseArgumentsCached = async (
   for (let i = 0; i < locations.length; i += 1) {
     specPath = locations[i];
     if (isParsingHistory && specPath.type === SpecLocationSource.LOCAL) {
-      // eslint-disable-next-line no-continue
       continue;
     }
 
-    // eslint-disable-next-line no-await-in-loop
     spec = await withTimeout(
       5000,
       loadSubcommandCached(specPath, context, localLogger),
@@ -860,7 +858,6 @@ const parseArgumentsCached = async (
     token?: string,
   ) => {
     const loadSpecResult =
-      // eslint-disable-next-line no-nested-ternary
       typeof loadSpec === "function"
         ? token !== undefined
           ? await loadSpec(token, exec)
@@ -906,7 +903,6 @@ const parseArgumentsCached = async (
 
   for (let i = 1; i < tokens.length; i += 1) {
     if (state.completionObj.generateSpec) {
-      // eslint-disable-next-line no-await-in-loop
       state = await generateSpecForState(
         state,
         tokens.map((token) => token.text),
@@ -948,7 +944,6 @@ const parseArgumentsCached = async (
       const { alias } = lastArgObject.parserDirectives;
       try {
         const aliasValue =
-          // eslint-disable-next-line no-await-in-loop
           typeof alias === "string" ? alias : await alias(token, exec);
         try {
           currentCommand = substituteAlias(command, tokens[i], aliasValue);
@@ -957,7 +952,7 @@ const parseArgumentsCached = async (
           tokens = currentCommand.tokens.slice(startIndex);
           state = lastState;
           i -= 1;
-          // eslint-disable-next-line no-continue
+
           continue;
         } catch (err) {
           localLogger.error("Error substituting alias:", err);
@@ -987,7 +982,6 @@ const parseArgumentsCached = async (
       if (argLoadSpec) {
         loadSpec = argLoadSpec;
       } else if (isCommand || isScript) {
-        /* eslint-disable-next-line no-await-in-loop */
         const specLocation = await getSpecPath(
           token,
           context.currentWorkingDirectory,
@@ -1004,7 +998,6 @@ const parseArgumentsCached = async (
       }
     }
 
-    // eslint-disable-next-line no-await-in-loop
     if (await updateStateForLoadSpec(loadSpec, i, token)) {
       return state;
     }

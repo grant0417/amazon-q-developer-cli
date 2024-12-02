@@ -1,5 +1,5 @@
-import { sleep } from "@amzn/fig-io-shared/utils";
-import { Annotation } from "@amzn/fig-io-autocomplete-parser";
+import { sleep } from "@aws/amazon-q-developer-clshared/utils";
+import { Annotation } from "@aws/amazon-q-developer-clautocomplete-parser";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   generatorCache,

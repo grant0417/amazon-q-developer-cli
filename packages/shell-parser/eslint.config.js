@@ -1,5 +1,5 @@
 // @ts-check
-import base from "@amzn/fig-io-eslint-config/base";
+import base from "@aws/amazon-q-developer-cleslint-config/base";
 export default base({
   tsconfigPath: "./tsconfig.eslint.json",
 });

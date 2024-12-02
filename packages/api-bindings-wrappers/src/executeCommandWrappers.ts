@@ -1,6 +1,6 @@
-import { Process } from "@amzn/fig-io-api-bindings";
-import { withTimeout } from "@amzn/fig-io-shared/utils";
-import { createErrorInstance } from "@amzn/fig-io-shared/errors";
+import { Process } from "@aws/amazon-q-developer-clapi-bindings";
+import { withTimeout } from "@aws/amazon-q-developer-clshared/utils";
+import { createErrorInstance } from "@aws/amazon-q-developer-clshared/errors";
 import logger from "loglevel";
 import { cleanOutput, executeCommandTimeout } from "./executeCommand.js";
 import { fread } from "./fs.js";

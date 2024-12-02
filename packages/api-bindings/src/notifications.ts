@@ -3,7 +3,7 @@ import {
   ServerOriginatedMessage,
   NotificationRequest,
   NotificationType,
-} from "@amzn/fig-io-proto/fig";
+} from "@aws/amazon-q-developer-clproto/fig";
 
 import { sendMessage } from "./core.js";
 
@@ -20,7 +20,6 @@ export interface Subscription {
 
 const handlers: Partial<Record<NotificationType, NotificationHandler[]>> = {};
 
-// eslint-disable-next-line no-underscore-dangle
 export function _unsubscribe(
   type: NotificationType,
   handler?: NotificationHandler,
@@ -30,7 +29,6 @@ export function _unsubscribe(
   }
 }
 
-// eslint-disable-next-line no-underscore-dangle
 export function _subscribe(
   request: NotificationRequest,
   handler: NotificationHandler,
@@ -105,7 +103,6 @@ const unsubscribeFromAll = () => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 if (!window?.fig?.quiet) {
   console.log("[q] unsubscribing any existing notifications...");
 }

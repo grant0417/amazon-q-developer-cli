@@ -2,8 +2,6 @@
  * Do not edit directly! Instead run 'npm run generate-requests' in typescript-api-bindings
  */
 
-/* eslint-disable max-len */
-
 import {
   AggregateSessionMetricActionRequest,
   AppendToFileRequest,
@@ -77,7 +75,7 @@ import {
   UserLogoutRequest,
   WindowFocusRequest,
   WriteFileRequest,
-} from "@amzn/fig-io-proto/fig";
+} from "@aws/amazon-q-developer-clproto/fig";
 import { sendMessage } from "./core.js";
 
 export async function sendPositionWindowRequest(

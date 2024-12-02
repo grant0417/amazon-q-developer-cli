@@ -1,11 +1,11 @@
 import { Internal, Metadata } from "@fig/autocomplete-shared";
 import logger from "loglevel";
-import { Command } from "@amzn/fig-io-shell-parser";
+import { Command } from "@aws/amazon-q-developer-clshell-parser";
 import {
   ArgumentParserResult,
   BasicAnnotation,
   TokenType,
-} from "@amzn/fig-io-autocomplete-parser";
+} from "@aws/amazon-q-developer-clautocomplete-parser";
 import { SuggestionNotFoundError } from "./errors";
 
 export type AnnotatedCommand = {
