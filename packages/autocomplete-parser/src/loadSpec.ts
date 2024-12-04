@@ -1,17 +1,16 @@
 import logger, { Logger } from "loglevel";
 import { Settings, Debugger } from "@aws/amazon-q-developer-cli-api-bindings";
-import {
-  convertSubcommand,
-  initializeDefault,
-  applyMixin,
-} from "@fig/autocomplete-shared";
+import { convertSubcommand, initializeDefault } from "@fig/autocomplete-shared";
 import {
   withTimeout,
   SpecLocationSource,
   splitPath,
   ensureTrailingSlash,
 } from "@aws/amazon-q-developer-cli-shared/utils";
-import { Subcommand, SpecLocation } from "@aws/amazon-q-developer-cli-shared/internal";
+import {
+  Subcommand,
+  SpecLocation,
+} from "@aws/amazon-q-developer-cli-shared/internal";
 import {
   SETTINGS,
   getSetting,
@@ -21,10 +20,8 @@ import {
 import {
   importFromPublicCDN,
   publicSpecExists,
-  getPrivateSpec,
   SpecFileImport,
   importSpecFromFile,
-  getSpecInfo,
   isDiffVersionedSpec,
   importFromLocalhost,
 } from "./loadHelpers.js";
@@ -82,14 +79,6 @@ export const getSpecPath = async (
 
   if (!isScript) {
     const type = SpecLocationSource.GLOBAL;
-
-    const privateNamespaceId = getPrivateSpec({
-      name,
-      isScript: false,
-    })?.namespaceId;
-    if (privateNamespaceId !== undefined) {
-      return { name, type, privateNamespaceId };
-    }
 
     // If `isScript` is undefined, we are parsing the first token, and
     // any path with a / is a script.
@@ -165,30 +154,16 @@ export const importSpecFromLocation = async (
     // If we couldn't successfully load a dev spec try loading from specPath.
     const { name, path } = specLocation;
     const [dirname, basename] = splitPath(`${path || "~/"}${name}`);
-    try {
-      const privateSpecMatch = await getSpecInfo(
-        basename,
-        dirname,
-        localLogger,
-      );
-      resolvedLocation = { type: "private", ...privateSpecMatch };
-      // specFile = await importFromPrivateCDN(privateSpecMatch, authClient);
-    } catch (err) {
-      specFile = await importSpecFromFile(
-        basename,
-        `${dirname}.fig/autocomplete/build/`,
-        localLogger,
-      );
-    }
+
+    specFile = await importSpecFromFile(
+      basename,
+      `${dirname}.fig/autocomplete/build/`,
+      localLogger,
+    );
   } else if (!specFile) {
     const { name, diffVersionedFile: versionFileName } = specLocation;
-    const privateSpecMatch = getPrivateSpec({ name, isScript: false });
 
-    if (privateSpecMatch) {
-      logger.info(`Found private spec ${privateSpecMatch}...`);
-      resolvedLocation = { type: "private", ...privateSpecMatch };
-      // specFile = await importFromPrivateCDN(privateSpecMatch, authClient);
-    } else if (await publicSpecExists(name)) {
+    if (await publicSpecExists(name)) {
       // If we're here, importing was successful.
       try {
         const result = await importFromPublicCDN(
@@ -215,7 +190,7 @@ export const importSpecFromLocation = async (
           `~/.fig/autocomplete/build/`,
           localLogger,
         );
-      } catch (err) {
+      } catch (_err) {
         /* empty */
       }
     }
@@ -230,33 +205,16 @@ export const importSpecFromLocation = async (
 
 export const loadFigSubcommand = async (
   specLocation: SpecLocation,
-  context?: Fig.ShellContext,
+  _context?: Fig.ShellContext,
   localLogger: Logger = logger,
 ): Promise<Fig.Subcommand> => {
   const { name } = specLocation;
   const location = (await isDiffVersionedSpec(name))
     ? { ...specLocation, diffVersionedFile: "index" }
     : specLocation;
-  const { specFile, resolvedLocation } = await importSpecFromLocation(
-    location,
-    localLogger,
-  );
-
+  const { specFile } = await importSpecFromLocation(location, localLogger);
   const subcommand = await tryResolveSpecToSubcommand(specFile, specLocation);
-  // const mixin = resolvedLocation && (await loadMixinCached(resolvedLocation));
-  const mixin = undefined;
-  return mixin
-    ? applyMixin(
-        subcommand,
-        context ?? {
-          currentProcess: "",
-          currentWorkingDirectory: "",
-          sshPrefix: "",
-          environmentVariables: {},
-        },
-        mixin,
-      )
-    : subcommand;
+  return subcommand;
 };
 
 export const loadSubcommandCached = async (
