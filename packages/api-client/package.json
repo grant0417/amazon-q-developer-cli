@@ -5,6 +5,9 @@
   "author": "Amazon Web Services",
   "type": "module",
   "exports": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=18"
   },
@@ -20,9 +23,9 @@
     "@amzn/fig-io-shared": "workspace:^",
     "@amzn/fig-io-tsconfig": "workspace:^",
     "@amzn/fig-io-types": "workspace:^",
-    "@types/react": "^18.3.12",
+    "@types/react": "^18.3.14",
     "eslint": "^9.16.0",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
