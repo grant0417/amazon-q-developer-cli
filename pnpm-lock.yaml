@@ -198,43 +198,6 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
 
-  packages/api-client:
-    dependencies:
-      '@amzn/fig-io-api-bindings':
-        specifier: workspace:~
-        version: link:../api-bindings
-      '@amzn/fig-io-api-bindings-wrappers':
-        specifier: workspace:^
-        version: link:../api-bindings-wrappers
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-    devDependencies:
-      '@amzn/fig-io-eslint-config':
-        specifier: workspace:^
-        version: link:../eslint-config
-      '@amzn/fig-io-shared':
-        specifier: workspace:^
-        version: link:../shared
-      '@amzn/fig-io-tsconfig':
-        specifier: workspace:^
-        version: link:../tsconfig
-      '@amzn/fig-io-types':
-        specifier: workspace:^
-        version: link:../types
-      '@types/react':
-        specifier: ^18.3.14
-        version: 18.3.14
-      eslint:
-        specifier: ^9.16.0
-        version: 9.16.0(jiti@1.21.6)
-      prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
-      typescript:
-        specifier: ^5.7.2
-        version: 5.7.2
-
   packages/autocomplete:
     dependencies:
       '@amzn/fig-io-api-bindings':
@@ -243,9 +206,6 @@ importers:
       '@amzn/fig-io-api-bindings-wrappers':
         specifier: workspace:^
         version: link:../api-bindings-wrappers
-      '@amzn/fig-io-api-client':
-        specifier: workspace:^
-        version: link:../api-client
       '@amzn/fig-io-autocomplete-parser':
         specifier: workspace:^
         version: link:../autocomplete-parser
@@ -382,9 +342,6 @@ importers:
       '@amzn/fig-io-api-bindings-wrappers':
         specifier: workspace:^
         version: link:../api-bindings-wrappers
-      '@amzn/fig-io-api-client':
-        specifier: workspace:^
-        version: link:../api-client
       '@amzn/fig-io-shell-parser':
         specifier: workspace:^
         version: link:../shell-parser

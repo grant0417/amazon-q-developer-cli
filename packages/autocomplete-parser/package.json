@@ -33,7 +33,6 @@
   "dependencies": {
     "@amzn/fig-io-api-bindings": "workspace:~",
     "@amzn/fig-io-api-bindings-wrappers": "workspace:^",
-    "@amzn/fig-io-api-client": "workspace:^",
     "@amzn/fig-io-shell-parser": "workspace:^",
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
