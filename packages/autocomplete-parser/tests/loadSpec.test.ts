@@ -1,5 +1,8 @@
 import logger from "loglevel";
-import { SETTINGS, updateSettings } from "@aws/amazon-q-developer-cli-api-bindings-wrappers";
+import {
+  SETTINGS,
+  updateSettings,
+} from "@aws/amazon-q-developer-cli-api-bindings-wrappers";
 import { SpecLocationSource } from "@aws/amazon-q-developer-cli-shared/utils";
 import {
   getSpecPath,
@@ -29,7 +32,9 @@ vi.mock("../src/loadHelpers", () => ({
 }));
 
 vi.mock("@aws/amazon-q-developer-cli-api-bindings-wrappers", async () => ({
-  ...(await vi.importActual("@aws/amazon-q-developer-cli-api-bindings-wrappers")),
+  ...(await vi.importActual(
+    "@aws/amazon-q-developer-cli-api-bindings-wrappers",
+  )),
   executeCommand: vi.fn(),
 }));
 

@@ -14,8 +14,12 @@ import * as helpers from "../helpers";
 import { GeneratorContext } from "../helpers";
 import { getScriptSuggestions } from "../scriptSuggestionsGenerator";
 
-vi.mock("@aws/amazon-q-developer-cli-api-bindings-wrappers/src/executeCommand", async () =>
-  vi.importActual("@aws/amazon-q-developer-cli-api-bindings-wrappers/src/executeCommand"),
+vi.mock(
+  "@aws/amazon-q-developer-cli-api-bindings-wrappers/src/executeCommand",
+  async () =>
+    vi.importActual(
+      "@aws/amazon-q-developer-cli-api-bindings-wrappers/src/executeCommand",
+    ),
 );
 
 const context: GeneratorContext = {

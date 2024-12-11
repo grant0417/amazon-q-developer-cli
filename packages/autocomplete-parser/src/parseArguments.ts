@@ -17,7 +17,10 @@ import {
   isInDevMode,
   SETTINGS,
 } from "@aws/amazon-q-developer-cli-api-bindings-wrappers";
-import { Command, substituteAlias } from "@aws/amazon-q-developer-cli-shell-parser";
+import {
+  Command,
+  substituteAlias,
+} from "@aws/amazon-q-developer-cli-shell-parser";
 import {
   getSpecPath,
   loadSubcommandCached,

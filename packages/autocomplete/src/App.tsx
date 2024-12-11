@@ -1,4 +1,7 @@
-import { WindowPosition, Settings } from "@aws/amazon-q-developer-cli-api-bindings";
+import {
+  WindowPosition,
+  Settings,
+} from "@aws/amazon-q-developer-cli-api-bindings";
 import { SETTINGS } from "@aws/amazon-q-developer-cli-api-bindings-wrappers";
 import React, {
   useState,
