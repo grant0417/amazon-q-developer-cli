@@ -459,16 +459,16 @@ importers:
         specifier: workspace:^
         version: link:../types
       '@types/react':
-        specifier: ^18.3.12
+        specifier: ^18.3.14
         version: 18.3.14
       '@types/react-dom':
-        specifier: ^18.3.1
+        specifier: ^18.3.2
         version: 18.3.2
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.16.0
+        specifier: ^8.17.0
         version: 8.17.0(@typescript-eslint/parser@8.17.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.7.2))(eslint@9.16.0(jiti@1.21.6))(typescript@5.7.2)
       '@typescript-eslint/parser':
-        specifier: ^8.16.0
+        specifier: ^8.17.0
         version: 8.17.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.7.2)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
@@ -598,7 +598,7 @@ importers:
         specifier: workspace:^
         version: link:../tsconfig
       '@vitest/coverage-v8':
-        specifier: ^2.1.6
+        specifier: ^2.1.8
         version: 2.1.8(vitest@2.1.8)
       eslint:
         specifier: ^9.16.0
