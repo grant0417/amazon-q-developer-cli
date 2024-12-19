@@ -1,13 +1,13 @@
 {
   "extends": [
-    "@aws/amazon-q-developer-cli-tsconfig/base.json",
-    "@aws/amazon-q-developer-cli-tsconfig/dom.json"
+    "@amzn/tsconfig/base.json",
+    "@amzn/tsconfig/dom.json"
   ],
   "compilerOptions": {
     "outDir": "dist",
     "types": [
       "@withfig/autocomplete-types",
-      "@aws/amazon-q-developer-cli-types"
+      "@amzn/types"
     ]
   },
   "include": ["src"]
