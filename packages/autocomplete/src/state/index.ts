@@ -25,7 +25,6 @@ import { trackEvent } from "../telemetry.js";
 import { FigState, initialFigState } from "../fig/hooks";
 import {
   AutocompleteState,
-  ComponentMap,
   NamedSetState,
   Visibility,
 } from "./types";
@@ -61,8 +60,6 @@ const initialState: Partial<AutocompleteState> = {
   fuzzySearchEnabled: false,
   userFuzzySearchEnabled: getSetting(SETTINGS.FUZZY_SEARCH, false) as boolean,
   settings: {} as SettingsMap,
-
-  components: {},
 };
 
 const getCommandMemoized = memoizeOne(getCommand);
@@ -508,14 +505,6 @@ export const useAutocompleteStore = createWithEqualityFn<AutocompleteState>(
               return error(`Failed to get token array: ${err}`);
             }
           }),
-
-        setComponents: (components: React.SetStateAction<ComponentMap>) =>
-          setNamed("setComponents", (state) => ({
-            components:
-              typeof components === "function"
-                ? components(state.components)
-                : components,
-          })),
 
         error: (error: string) =>
           setNamed("error", (state) => {
