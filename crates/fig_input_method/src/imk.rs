@@ -56,9 +56,9 @@ struct Ivars {
 declare_class!(
     struct MyInputController;
 
-    // - The superclass NSObject does not have any subclassing requirements.
+    // - The superclass IMKInputController does not have any subclassing requirements.
     // - Interior mutability is a safe default.
-    // - `MyCustomObject` does not implement `Drop`.
+    // - `MyInputController` does not implement `Drop`.
     unsafe impl ClassType for MyInputController {
         type Super = IMKInputController;
         type Mutability = InteriorMutable;

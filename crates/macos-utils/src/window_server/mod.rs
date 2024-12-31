@@ -31,6 +31,7 @@ use core_foundation::string::{
 };
 use dashmap::DashMap;
 use flume::Sender;
+use objc2::mutability::InteriorMutable;
 use objc2::rc::{
     Allocated,
     Retained,
@@ -41,7 +42,6 @@ use objc2::{
     DeclaredClass,
     declare_class,
     msg_send_id,
-    mutability,
     sel,
 };
 use objc2_app_kit::{
@@ -213,9 +213,12 @@ pub struct Ivars {
 declare_class! {
     pub struct ObserverClass;
 
+    // - The superclass NSObject does not have any subclassing requirements.
+    // - Interior mutability is a safe default.
+    // - `ObserverClass` does not implement `Drop`.
     unsafe impl ClassType for ObserverClass {
         type Super = NSObject;
-        type Mutability = mutability::InteriorMutable;
+        type Mutability = InteriorMutable;
         const NAME: &'static str = OBSERVER_CLASS_NAME;
     }
 
