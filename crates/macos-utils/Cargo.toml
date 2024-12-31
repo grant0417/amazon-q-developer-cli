@@ -8,7 +8,7 @@ version.workspace = true
 license.workspace = true
 
 [target.'cfg(target_os = "macos")'.dependencies]
-block = "0.1.6"
+block2.workspace = true
 core-graphics.workspace = true
 core-foundation.workspace = true
 cocoa.workspace = true
@@ -42,6 +42,3 @@ appkit-nsworkspace-bindings.workspace = true
 tracing.workspace = true
 tokio.workspace = true
 nix.workspace = true
-
-[dependencies]
-block2 = "0.5.1"
