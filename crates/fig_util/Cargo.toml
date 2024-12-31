@@ -23,6 +23,7 @@ fig_os_shim.workspace = true
 hex.workspace = true
 indoc.workspace = true
 libc.workspace = true
+objc2-foundation = { version = "0.2.2", features = ["NSURL"] }
 paste = "1.0.11"
 rand.workspace = true
 regex.workspace = true
@@ -40,7 +41,8 @@ whoami.workspace = true
 appkit-nsworkspace-bindings.workspace = true
 core-foundation = "0.10.0"
 macos-utils = { path = "../macos-utils" }
-objc.workspace = true
+objc2 = "0.5.2"
+objc2-app-kit = { version = "0.2.2", features = ["NSWorkspace"] }
 
 [target.'cfg(target_os = "linux")'.dependencies]
 bstr.workspace = true
