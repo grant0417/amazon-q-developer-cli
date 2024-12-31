@@ -29,13 +29,13 @@ fig_log.workspace = true
 fig_proto.workspace = true
 fig_util.workspace = true
 macos-utils = { path = "../macos-utils" }
-objc2 = "0.5.2"
-objc2-app-kit = { version = "0.2.2", features = [
+objc2.workspace = true
+objc2-app-kit = { workspace = true, features = [
     "NSApplication",
     "NSResponder",
 ] }
-objc2-foundation = { version = "0.2.2", features = ["NSThread"] }
-objc2-input-method-kit = { version = "0.2.2", features = [
+objc2-foundation = { workspace = true, features = ["NSThread"] }
+objc2-input-method-kit = { workspace = true, features = [
     "IMKServer",
     "IMKInputController",
 ] }
