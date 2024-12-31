@@ -6759,7 +6759,6 @@ dependencies = [
  "macos-utils",
  "mimalloc",
  "nix 0.29.0",
- "objc",
  "objc2",
  "objc2-app-kit",
  "objc2-foundation",
