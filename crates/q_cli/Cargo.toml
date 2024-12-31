@@ -60,6 +60,9 @@ indicatif = "0.17.3"
 indoc.workspace = true
 mimalloc.workspace = true
 objc.workspace = true
+objc2 = "0.5.2"
+objc2-app-kit = { version = "0.2.2", features = ["NSRunningApplication"] }
+objc2-foundation = "0.2.2"
 once_cell.workspace = true
 owo-colors = "4.0.0"
 parking_lot = "0.12.1"
