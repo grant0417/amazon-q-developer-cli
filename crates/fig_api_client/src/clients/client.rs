@@ -101,7 +101,10 @@ impl Client {
         Ok(Self(inner::Inner::Consolas(ConsolasClient::from_conf(conf))))
     }
 
-    pub async fn generate_recommendations(&self, mut input: RecommendationsInput) -> Result<RecommendationsOutput, Error> {
+    pub async fn generate_recommendations(
+        &self,
+        mut input: RecommendationsInput,
+    ) -> Result<RecommendationsOutput, Error> {
         let truncate_left = |s: String, max_len: usize| -> String {
             if s.len() > max_len {
                 s[(s.len() - max_len)..].to_string()
@@ -110,13 +113,8 @@ impl Client {
             }
         };
 
-        let truncate_right = |s: String, max_len: usize| -> String {
-            if s.len() > max_len {
-                s[..max_len].to_string()
-            } else {
-                s
-            }
-        };
+        let truncate_right =
+            |s: String, max_len: usize| -> String { if s.len() > max_len { s[..max_len].to_string() } else { s } };
 
         let filename = truncate_right(input.file_context.filename, FILE_CONTEXT_FILE_NAME_MAX_LEN);
         let left_content = truncate_left(
