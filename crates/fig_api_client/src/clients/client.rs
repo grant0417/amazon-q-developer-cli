@@ -101,33 +101,36 @@ impl Client {
         Ok(Self(inner::Inner::Consolas(ConsolasClient::from_conf(conf))))
     }
 
-    pub async fn generate_recommendations(&self, input: RecommendationsInput) -> Result<RecommendationsOutput, Error> {
-        let validate_field_length = |field: &'static str, value: &str, max_length: usize| -> Result<(), Error> {
-            if value.len() > max_length {
-                return Err(Error::LengthValidation {
-                    field,
-                    min_size: 0,
-                    max_length,
-                });
+    pub async fn generate_recommendations(&self, mut input: RecommendationsInput) -> Result<RecommendationsOutput, Error> {
+        let truncate_left = |s: String, max_len: usize| -> String {
+            if s.len() > max_len {
+                s[(s.len() - max_len)..].to_string()
+            } else {
+                s
             }
-            Ok(())
         };
 
-        validate_field_length(
-            "file_context.filename",
-            &input.file_context.filename,
-            FILE_CONTEXT_FILE_NAME_MAX_LEN,
-        )?;
-        validate_field_length(
-            "file_context.left_file_content",
-            &input.file_context.left_file_content,
+        let truncate_right = |s: String, max_len: usize| -> String {
+            if s.len() > max_len {
+                s[..max_len].to_string()
+            } else {
+                s
+            }
+        };
+
+        let filename = truncate_right(input.file_context.filename, FILE_CONTEXT_FILE_NAME_MAX_LEN);
+        let left_content = truncate_left(
+            input.file_context.left_file_content,
             FILE_CONTEXT_LEFT_FILE_CONTENT_MAX_LEN,
-        )?;
-        validate_field_length(
-            "file_context.right_file_content",
-            &input.file_context.right_file_content,
+        );
+        let right_content = truncate_right(
+            input.file_context.right_file_content,
             FILE_CONTEXT_RIGHT_FILE_CONTENT_MAX_LEN,
-        )?;
+        );
+
+        input.file_context.filename = filename;
+        input.file_context.left_file_content = left_content;
+        input.file_context.right_file_content = right_content;
 
         match &self.0 {
             inner::Inner::Codewhisperer(client) => Ok(codewhisperer_generate_recommendation(client, input).await?),

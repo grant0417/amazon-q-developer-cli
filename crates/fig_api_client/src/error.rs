@@ -49,13 +49,6 @@ pub enum Error {
 
     #[error("unsupported action by consolas: {0}")]
     UnsupportedConsolas(&'static str),
-
-    #[error("validation error: {} must be at least {} characters and at most {} characters", .field, .min_size, .max_length)]
-    LengthValidation {
-        field: &'static str,
-        min_size: usize,
-        max_length: usize,
-    },
 }
 
 impl Error {
@@ -73,8 +66,7 @@ impl Error {
             Error::CodewhispererChatResponseStream(_)
             | Error::QDeveloperChatResponseStream(_)
             | Error::SmithyBuild(_)
-            | Error::UnsupportedConsolas(_)
-            | Error::LengthValidation { .. } => false,
+            | Error::UnsupportedConsolas(_) => false,
         }
     }
 
@@ -90,8 +82,7 @@ impl Error {
             Error::CodewhispererChatResponseStream(_)
             | Error::QDeveloperChatResponseStream(_)
             | Error::SmithyBuild(_)
-            | Error::UnsupportedConsolas(_)
-            | Error::LengthValidation { .. } => false,
+            | Error::UnsupportedConsolas(_) => false,
         }
     }
 }
