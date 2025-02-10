@@ -43,6 +43,11 @@ use crate::{
     Error,
 };
 
+// Limits for FileContext
+pub const FILE_CONTEXT_LEFT_FILE_CONTENT_MAX_LEN: usize = 10240;
+pub const FILE_CONTEXT_RIGHT_FILE_CONTENT_MAX_LEN: usize = 10240;
+pub const FILE_CONTEXT_FILE_NAME_MAX_LEN: usize = 1024;
+
 mod inner {
     use amzn_codewhisperer_client::Client as CodewhispererClient;
     use amzn_consolas_client::Client as ConsolasClient;
@@ -97,6 +102,33 @@ impl Client {
     }
 
     pub async fn generate_recommendations(&self, input: RecommendationsInput) -> Result<RecommendationsOutput, Error> {
+        let validate_field_length = |field: &'static str, value: &str, max_length: usize| -> Result<(), Error> {
+            if value.len() > max_length {
+                return Err(Error::LengthValidation {
+                    field,
+                    min_size: 0,
+                    max_length,
+                });
+            }
+            Ok(())
+        };
+
+        validate_field_length(
+            "file_context.filename",
+            &input.file_context.filename,
+            FILE_CONTEXT_FILE_NAME_MAX_LEN,
+        )?;
+        validate_field_length(
+            "file_context.left_file_content",
+            &input.file_context.left_file_content,
+            FILE_CONTEXT_LEFT_FILE_CONTENT_MAX_LEN,
+        )?;
+        validate_field_length(
+            "file_context.right_file_content",
+            &input.file_context.right_file_content,
+            FILE_CONTEXT_RIGHT_FILE_CONTENT_MAX_LEN,
+        )?;
+
         match &self.0 {
             inner::Inner::Codewhisperer(client) => Ok(codewhisperer_generate_recommendation(client, input).await?),
             inner::Inner::Consolas(client) => Ok(consolas_generate_recommendation(client, input).await?),
