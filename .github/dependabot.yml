@@ -7,8 +7,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-      - "grant0417"
     open-pull-requests-limit: 100
     commit-message:
       prefix: ci
@@ -16,8 +14,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-      - "grant0417"
     commit-message:
       prefix: fix
       prefix-development: chore
